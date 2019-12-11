@@ -138,7 +138,7 @@ function camelize(str) {
 let _camelize = cached(camelize)
 
 
-17、hyphenate：驼峰命名转横线命名：拆分字符串，使用 - 相连，并且转换为小写
+//17、hyphenate：驼峰命名转横线命名：拆分字符串，使用 - 相连，并且转换为小写
 let hyphenateRE = /B([A-Z])/g;
 function hyphenate(str){
     return str.replace(hyphenateRE, '-$1').toLowerCase()
@@ -148,7 +148,7 @@ function hyphenate(str){
 let _hyphenate = cached(hyphenate);
 
 
-18、capitalize：字符串首位大写
+//18、capitalize：字符串首位大写
 function capitalize(str){
     return str.charAt(0).toUpperCase() + str.slice(1)
 }
@@ -157,7 +157,7 @@ function capitalize(str){
 let _capitalize = cached(capitalize)
 
 
-19、extend：将属性混合到目标对象中
+//19、extend：将属性混合到目标对象中
 function extend(to, _from) {
     for(let key in _from) {
         to[key] = _from[key];
@@ -166,7 +166,7 @@ function extend(to, _from) {
 }
 
 
-20、Object.assign：对象属性复制，浅拷贝
+//20、Object.assign：对象属性复制，浅拷贝
 Object.assign = Object.assign || function(){
     if(arguments.length == 0) throw new TypeError('Cannot convert undefined or null to object');
     
@@ -180,16 +180,16 @@ Object.assign = Object.assign || function(){
     })
     return target
 }
-使用Object.assign可以浅克隆一个对象：
+//使用Object.assign可以浅克隆一个对象：
 
 let clone = Object.assign({}, target)
-简单的深克隆可以使用JSON.parse()和JSON.stringify()，这两个api是解析json数据的，所以只能解析除symbol外的原始类型及数组和对象
+//简单的深克隆可以使用JSON.parse()和JSON.stringify()，这两个api是解析json数据的，所以只能解析除symbol外的原始类型及数组和对象
 
 let clone = JSON.parse( JSON.stringify(target) )
 
 
-21、clone：克隆数据，可深度克隆
-这里列出了原始类型，时间、正则、错误、数组、对象的克隆规则，其他的可自行补充
+//21、clone：克隆数据，可深度克隆
+//这里列出了原始类型，时间、正则、错误、数组、对象的克隆规则，其他的可自行补充
 
 function clone(value, deep){
     if(isPrimitive(value)){
@@ -217,7 +217,7 @@ function clone(value, deep){
 }
 
 
-22、识别各种浏览器及平台
+//22、识别各种浏览器及平台
 //运行环境是浏览器
 let inBrowser = typeof window !== 'undefined';
 //运行环境是微信
@@ -233,7 +233,7 @@ let isIOS = (UA && /iphone|ipad|ipod|ios/.test(UA)) || (weexPlatform === 'ios');
 let isChrome = UA && /chrome/d+/.test(UA) && !isEdge;
 
 
-23、getExplorerInfo：获取浏览器信息
+//23、getExplorerInfo：获取浏览器信息
 function getExplorerInfo() {
     let t = navigator.userAgent.toLowerCase();
     return 0 <= t.indexOf("msie") ? { //ie < 11
@@ -264,7 +264,7 @@ function getExplorerInfo() {
 }
 
 
-24、isPCBroswer：检测是否为PC端浏览器模式
+//24、isPCBroswer：检测是否为PC端浏览器模式
 function isPCBroswer() {
     let e = navigator.userAgent.toLowerCase()
         , t = "ipad" == e.match(/ipad/i)
@@ -279,7 +279,7 @@ function isPCBroswer() {
 }
 
 
-25、unique：数组去重，返回一个新数组
+//25、unique：数组去重，返回一个新数组
 function unique(arr){
     if(!isArrayLink(arr)){ //不是类数组对象
         return arr
@@ -307,7 +307,7 @@ function unique(arr){
 }
 
 
-26、Set简单实现
+//26、Set简单实现
 window.Set = window.Set || (function () {
     function Set(arr) {
         this.items = arr ? unique(arr) : [];
@@ -350,7 +350,7 @@ window.Set = window.Set || (function () {
 }());
 
 
-27、repeat：生成一个重复的字符串，有n个str组成，可修改为填充为数组等
+//27、repeat：生成一个重复的字符串，有n个str组成，可修改为填充为数组等
 function repeat(str, n) {
     let res = '';
     while(n) {
@@ -365,7 +365,7 @@ function repeat(str, n) {
     return res
 };
 //repeat('123',3) ==> 123123123
-28、dateFormater：格式化时间
+//28、dateFormater：格式化时间
 function dateFormater(formater, t){
     let date = t ? new Date(t) : new Date(),
         Y = date.getFullYear() + '',
@@ -386,8 +386,8 @@ function dateFormater(formater, t){
 // dateFormater('YYYYMMDDHHmm', t) ==> 201906261830
 
 
-29、dateStrForma：将指定字符串由一种时间格式转化为另一种
-from的格式应对应str的位置
+//29、dateStrForma：将指定字符串由一种时间格式转化为另一种
+//from的格式应对应str的位置
 
 function dateStrForma(str, from, to){
     //'20190626' 'YYYYMMDD' 'YYYY年MM月DD日'
@@ -417,7 +417,7 @@ function dateStrForma(str, from, to){
 //'2019年06月26日'.replace(/(d{4})年(d{2})月(d{2})日/, '$1-$2-$3') ==> 2019-06-26
 
 
-30、getPropByPath：根据字符串路径获取对象属性 : 'obj[0].count'
+//30、getPropByPath：根据字符串路径获取对象属性 : 'obj[0].count'
 function getPropByPath(obj, path, strict) {
       let tempObj = obj;
       path = path.replace(/[(w+)]/g, '.$1'); //将[0]转化为.0
@@ -445,7 +445,7 @@ function getPropByPath(obj, path, strict) {
 };
 
 
-31、GetUrlParam：获取Url参数，返回一个对象
+//31、GetUrlParam：获取Url参数，返回一个对象
 function GetUrlParam(){
     let url = document.location.toString();
     let arrObj = url.split("?");
@@ -462,7 +462,7 @@ function GetUrlParam(){
 // ?a=1&b=2&c=3 ==> {a: "1", b: "2", c: "3"}
 
 
-32、downloadFile：base64数据导出文件，文件下载
+//32、downloadFile：base64数据导出文件，文件下载
 function downloadFile(filename, data){
     let DownloadLink = document.createElement('a');
 
@@ -490,7 +490,7 @@ function downloadFile(filename, data){
 
 
 
-33、toFullScreen：全屏
+//33、toFullScreen：全屏
 function toFullScreen(){
     let elem = document.body;
     elem.webkitRequestFullScreen
@@ -505,7 +505,7 @@ function toFullScreen(){
 }
 
 
-34、exitFullscreen：退出全屏
+//34、exitFullscreen：退出全屏
 function exitFullscreen(){
     let elem = parent.document;
     elem.webkitCancelFullScreen
@@ -522,7 +522,7 @@ function exitFullscreen(){
 }
 
 
-35、requestAnimationFrame：window动画
+//35、requestAnimationFrame：window动画
 window.requestAnimationFrame = window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
     window.mozRequestAnimationFrame ||
@@ -544,15 +544,15 @@ window.cancelAnimationFrame = window.cancelAnimationFrame ||
     }
 
 
-36、_isNaN：检查数据是否是非数字值
-原生的isNaN会把参数转换成数字(valueof)，而null、true、false以及长度小于等于1的数组(元素为非NaN数据)会被转换成数字，这不是我想要的。Symbol类型的数据不具有valueof接口，所以isNaN会抛出错误，这里放在后面，可避免错误
+//36、_isNaN：检查数据是否是非数字值
+//原生的isNaN会把参数转换成数字(valueof)，而null、true、false以及长度小于等于1的数组(元素为非NaN数据)会被转换成数字，这不是我想要的。Symbol类型的数据不具有valueof接口，所以isNaN会抛出错误，这里放在后面，可避免错误
 
 function _isNaN(v){
     return !(typeof v === 'string' || typeof v === 'number') || isNaN(v)
 }
 
 
-37、max：求取数组中非NaN数据中的最大值
+//37、max：求取数组中非NaN数据中的最大值
 function max(arr){
     arr = arr.filter(item => !_isNaN(item))
     return arr.length ? Math.max.apply(null, arr) : undefined
@@ -560,14 +560,13 @@ function max(arr){
 //max([1, 2, '11', null, 'fdf', []]) ==> 11
 
 
-38、min：求取数组中非NaN数据中的最小值
+//38、min：求取数组中非NaN数据中的最小值
 function min(arr){
     arr = arr.filter(item => !_isNaN(item))
     return arr.length ? Math.min.apply(null, arr) : undefined
 }
 //min([1, 2, '11', null, 'fdf', []]) ==> 1
-39、random：返回一个lower - upper之间的随机数
-lower、upper无论正负与大小，但必须是非NaN的数据
+//39、random：返回一个lower - upper之间的随机数 lower、upper无论正负与大小，但必须是非NaN的数据
 
 function random(lower, upper){
     lower = +lower || 0
@@ -577,7 +576,7 @@ function random(lower, upper){
 //random(0, 0.5) ==> 0.3567039135734613
 //random(2, 1) ===> 1.6718418553475423
 //random(-2, -1) ==> -1.4474325452361945
-40、Object.keys：返回一个由一个给定对象的自身可枚举属性组成的数组
+//40、Object.keys：返回一个由一个给定对象的自身可枚举属性组成的数组
 Object.keys = Object.keys || function keys(object) {
     if(object === null || object === undefined){
         throw new TypeError('Cannot convert undefined or null to object');
@@ -592,7 +591,7 @@ Object.keys = Object.keys || function keys(object) {
 }
 
 
-41、Object.values：返回一个给定对象自身的所有可枚举属性值的数组
+//41、Object.values：返回一个给定对象自身的所有可枚举属性值的数组
 Object.values = Object.values || function values(object) {
     if(object === null || object === undefined){
         throw new TypeError('Cannot convert undefined or null to object');
@@ -607,7 +606,7 @@ Object.values = Object.values || function values(object) {
 }
 
 
-42、arr.fill：使用 value 值来填充 array，从start位置开始, 到end位置结束（但不包含end位置），返回原数组
+//42、arr.fill：使用 value 值来填充 array，从start位置开始, 到end位置结束（但不包含end位置），返回原数组
 Array.prototype.fill = Array.prototype.fill || function fill(value, start, end) {
     let ctx = this
     let length = ctx.length;
@@ -634,7 +633,7 @@ Array.prototype.fill = Array.prototype.fill || function fill(value, start, end) 
 //Array(3).fill(2) ===> [2, 2, 2]
 
 
-43、arr.includes：用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false，可指定开始查询的位置
+//43、arr.includes：用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false，可指定开始查询的位置
 Array.prototype.includes = Array.prototype.includes || function includes(value, start){
     let ctx = this
     let length = ctx.length;
@@ -652,7 +651,7 @@ Array.prototype.includes = Array.prototype.includes || function includes(value, 
 }
 
 
-44、arr.find：返回数组中通过测试（函数fn内判断）的第一个元素的值
+//44、arr.find：返回数组中通过测试（函数fn内判断）的第一个元素的值
 Array.prototype.find = Array.prototype.find || function find(fn, ctx){
     ctx = ctx || this
     
@@ -665,7 +664,7 @@ Array.prototype.find = Array.prototype.find || function find(fn, ctx){
 }
 
 
-45、arr.findIndex ：返回数组中通过测试（函数fn内判断）的第一个元素的下标
+//45、arr.findIndex ：返回数组中通过测试（函数fn内判断）的第一个元素的下标
 Array.prototype.findIndex = Array.prototype.findIndex || function findIndex(fn, ctx){
     ctx = ctx || this
     
@@ -678,7 +677,7 @@ Array.prototype.findIndex = Array.prototype.findIndex || function findIndex(fn, 
 }
 
 
-46、performance.timing：利用performance.timing进行性能分析
+//46、performance.timing：利用performance.timing进行性能分析
 window.onload = function(){
     setTimeout(function(){
         let t = performance.timing
@@ -697,7 +696,7 @@ window.onload = function(){
 }
 
 
-47、禁止某些键盘事件
+//47、禁止某些键盘事件
 document.addEventListener('keydown', function(event){
     return !(
         112 == event.keyCode || //F1
@@ -711,7 +710,7 @@ document.addEventListener('keydown', function(event){
 });
 
 
-48、禁止右键、选择、复制
+//48、禁止右键、选择、复制
 ['contextmenu', 'selectstart', 'copy'].forEach(function(ev){
     document.addEventListener(ev, function(event){
         return event.returnValue = false
